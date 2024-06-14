@@ -83,13 +83,6 @@ func (c *Client) do(ctx context.Context, op operationType, v any, variables map[
 		Errors errors
 		//Extensions any // Unused.
 	}
-	// err = json.NewDecoder(resp.Body).Decode(&out)
-	// if err != nil {
-	// 	// TODO: Consider including response body in returned error, if deemed helpful.
-	// 	return err
-	// }
-
-	fmt.Println("HERE!!!")
 
 	err = decodeWithTee(resp.Body, &out)
 	if err != nil {
