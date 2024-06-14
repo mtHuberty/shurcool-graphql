@@ -1,21 +1,18 @@
-graphql
-=======
+# graphql
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/shurcooL/graphql.svg)](https://pkg.go.dev/github.com/shurcooL/graphql)
+[![Go Reference](https://pkg.go.dev/badge/github.com/mtHuberty/shurcooL-graphql.svg)](https://pkg.go.dev/github.com/mtHuberty/shurcooL-graphql)
 
 Package `graphql` provides a GraphQL client implementation.
 
 For more information, see package [`github.com/shurcooL/githubv4`](https://github.com/shurcooL/githubv4), which is a specialized version targeting GitHub GraphQL API v4. That package is driving the feature development.
 
-Installation
-------------
+## Installation
 
 ```sh
-go get github.com/shurcooL/graphql
+go get github.com/mtHuberty/shurcooL-graphql
 ```
 
-Usage
------
+## Usage
 
 Construct a GraphQL client, specifying the GraphQL server URL. Then, you can use it to make GraphQL queries and mutations.
 
@@ -274,15 +271,13 @@ fmt.Printf("Created a %v star review: %v\n", m.CreateReview.Stars, m.CreateRevie
 // Created a 5 star review: This is a great movie!
 ```
 
-Directories
------------
+## Directories
 
-| Path                                                                                  | Synopsis                                                                                                        |
-|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| [ident](https://pkg.go.dev/github.com/shurcooL/graphql/ident)                         | Package ident provides functions for parsing and converting identifier names between various naming convention. |
-| [internal/jsonutil](https://pkg.go.dev/github.com/shurcooL/graphql/internal/jsonutil) | Package jsonutil provides a function for decoding JSON into a GraphQL query data structure.                     |
+| Path                                                                                            | Synopsis                                                                                                        |
+| ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [ident](https://pkg.go.dev/github.com/mtHuberty/shurcooL-graphql/ident)                         | Package ident provides functions for parsing and converting identifier names between various naming convention. |
+| [internal/jsonutil](https://pkg.go.dev/github.com/mtHuberty/shurcooL-graphql/internal/jsonutil) | Package jsonutil provides a function for decoding JSON into a GraphQL query data structure.                     |
 
-License
--------
+## License
 
--	[MIT License](LICENSE)
+- [MIT License](LICENSE)
