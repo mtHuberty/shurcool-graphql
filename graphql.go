@@ -83,11 +83,19 @@ func (c *Client) do(ctx context.Context, op operationType, v any, variables map[
 		Errors errors
 		//Extensions any // Unused.
 	}
-	err = json.NewDecoder(resp.Body).Decode(&out)
+	// err = json.NewDecoder(resp.Body).Decode(&out)
+	// if err != nil {
+	// 	// TODO: Consider including response body in returned error, if deemed helpful.
+	// 	return err
+	// }
+
+	fmt.Println("HERE!!!")
+
+	err = decodeWithTee(resp.Body, &out)
 	if err != nil {
-		// TODO: Consider including response body in returned error, if deemed helpful.
 		return err
 	}
+
 	if out.Data != nil {
 		err := jsonutil.UnmarshalGraphQL(*out.Data, v)
 		if err != nil {
@@ -98,6 +106,23 @@ func (c *Client) do(ctx context.Context, op operationType, v any, variables map[
 	if len(out.Errors) > 0 {
 		return out.Errors
 	}
+	return nil
+}
+
+func decodeWithTee(body io.ReadCloser, out interface{}) error {
+	// Create a buffer to capture the response body
+	var buf bytes.Buffer
+
+	// Create a TeeReader to read from the body and write to the buffer
+	tee := io.TeeReader(body, &buf)
+
+	// Decode the JSON from the TeeReader
+	err := json.NewDecoder(tee).Decode(out)
+	if err != nil {
+		// Include the response body in the error message
+		return fmt.Errorf("failed to decode JSON: %w. Response body: %s", err, buf.String())
+	}
+
 	return nil
 }
 
